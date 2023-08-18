@@ -66,7 +66,16 @@ export function Home() {
                 </TouchableOpacity>
 
             </View>
-
+            <View style={styles.taskCounterContainer}>
+                <View style={styles.taskCounterNewContainer}>
+                    <Text style={styles.createdText}>Criadas</Text>
+                    <Text style={styles.counter}>{taskList.filter(task => task.state == TaskState.NEW).length}</Text>
+                </View>
+                <View style={styles.taskCounterDoneContainer}>
+                    <Text style={styles.doneText}>Concluidas</Text>
+                    <Text style={styles.counter}>{taskList.filter(task => task.state == TaskState.DONE).length}</Text>
+                </View>
+            </View>
             <FlatList
                 data={taskList}
                 keyExtractor={task => task.name}

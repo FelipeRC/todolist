@@ -43,8 +43,46 @@ export const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     emptyListContainer: {
-        marginTop: 50,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        borderTopColor: '#313131',
+        borderTopWidth: 1,
+        paddingTop:50,
+        width:327
+    },
+    createdText: {
+        color:'#4EA8DE',
+        fontWeight: "bold"
+    },
+    doneText: {
+        color:'#8284FA',
+        fontWeight: "bold"
+    },
+    taskCounterContainer: {
+        flexDirection: "row",
+        width:327,
+        marginBottom: 20,
+        marginTop: 20,
+    },
+    taskCounterNewContainer:{
+        flexDirection: "row",
+        flex:1
+    },
+    taskCounterDoneContainer:{
+        flexDirection: "row",
+        flex:1,
+        justifyContent: "flex-end"
+    },
+    counter:{
+        width:25,
+        height:19,
+        borderRadius:999,
+        textAlign: "center",
+        textAlignVertical: "center",
+        color: '#D9D9D9',
+        fontSize: 12,
+        backgroundColor:'#333333',
+        marginLeft: 10,
+        fontWeight: "bold"
     }
 });
