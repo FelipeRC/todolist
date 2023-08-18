@@ -1,24 +1,49 @@
+import { useState } from "react";
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from "expo-linear-gradient";
 
 import { styles } from "./styles";
 import LOGO from "../../assets/logo.png";
-import { useState } from "react";
+
+import { Task, TaskState } from "../../components/Task";
 
 export function Home() {
 
-    enum TaskState {
-        NEW,
-        DONE
+    const [taskList, setTaskList] = useState<Task[]>([{ name: 'dsdada', state: TaskState.NEW }, { name: 'dsdada dsajdfjasfhdas sd sdasdasdas adasd sd  asdds', state: TaskState.DONE }]);
+
+    const [taskDescription, setTaskDescription] = useState('');
+
+    const sortTaskList = (taskList: Task[]) => {
+        return taskList.sort((task1, task2) => {
+            if (task1.state === task2.state) {
+                return task1.name.localeCompare(task2.name);
+            } else if (task1.state === TaskState.DONE) {
+                return 1;
+            }
+            return -1;
+        });
     }
 
-    interface Task {
-        name: string,
-        state: TaskState
-    };
+    const handleTaskAdd = () => {
+        if (taskDescription) {
+            setTaskList(prevState => sortTaskList([...prevState, { name: taskDescription, state: TaskState.NEW }]));
+            setTaskDescription('');
+        }
+    }
 
-    const [taskList, setTaskList] = useState<Task[]>([]);
+    const handleTaskDelete = (task: Task) => {
+        setTaskList(prevState => prevState.filter(item => item.name !== task.name || item.state !== task.state));
+    }
+
+    const toggleCheckTask = (task: Task) => {
+        setTaskList(prevState => sortTaskList(prevState.map(item => {
+            if (item.name === task.name && item.state === task.state) {
+                item.state = item.state === TaskState.NEW ? TaskState.DONE : TaskState.NEW;
+            }
+            return item;
+        })));
+    }
 
     return (
         <LinearGradient
@@ -33,8 +58,10 @@ export function Home() {
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#808080"
                     style={styles.taskDescriptionInput}
+                    onChangeText={setTaskDescription}
+                    value={taskDescription}
                 />
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity style={styles.addButton} onPress={handleTaskAdd}>
                     <Ionicons name="add-circle-outline" size={16} color="#F2F2F2" />
                 </TouchableOpacity>
 
@@ -44,7 +71,7 @@ export function Home() {
                 data={taskList}
                 keyExtractor={task => task.name}
                 renderItem={({ index, item }) => (
-                    <Text key={index}>{item.name}</Text>
+                    <Task key={index} name={item.name} state={item.state} onDelete={handleTaskDelete} onCheck={toggleCheckTask} />
                 )}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={
