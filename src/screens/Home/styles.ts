@@ -21,7 +21,8 @@ export const styles = StyleSheet.create({
         borderRadius: 6,
         borderColor: '#0D0D0D',
         borderWidth: 1,
-        padding: 16
+        padding: 16,
+        fontFamily: 'Inter-Regular'
     },
     addButton: {
         height: 52,
@@ -33,14 +34,16 @@ export const styles = StyleSheet.create({
         borderRadius: 6
     },
     addButtonText: {
-        color: '#fff'
+        color: '#fff',
+        fontFamily: 'Inter-Regular'
     },
     emptyListText: {
         fontSize: 14,
-        color: '#808080'
+        color: '#808080',
+        fontFamily: 'Inter-Regular'
     },
     boldText: {
-        fontWeight: "bold"
+        fontFamily: 'Inter-Bold'
     },
     emptyListContainer: {
         alignItems: "center",
@@ -52,11 +55,11 @@ export const styles = StyleSheet.create({
     },
     createdText: {
         color:'#4EA8DE',
-        fontWeight: "bold"
+        fontFamily: 'Inter-Bold'
     },
     doneText: {
         color:'#8284FA',
-        fontWeight: "bold"
+        fontFamily: 'Inter-Bold'
     },
     taskCounterContainer: {
         flexDirection: "row",

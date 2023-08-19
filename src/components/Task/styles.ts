@@ -24,7 +24,8 @@ export const styles = (props: TaskStylesProps) => StyleSheet.create({
         fontSize: 14,
         color: props && props.state === TaskState.NEW ? '#F2F2F2' : '#808080',
         textDecorationLine: props.state === TaskState.NEW ? 'none' : "line-through",
-        textAlignVertical: "center"
+        textAlignVertical: "center",
+        fontFamily: 'Inter-Regular'
 
     },
     deleteButton: {

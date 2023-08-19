@@ -62,7 +62,7 @@ export function Home() {
                     value={taskDescription}
                 />
                 <TouchableOpacity style={styles.addButton} onPress={handleTaskAdd}>
-                    <Ionicons name="add-circle-outline" size={16} color="#F2F2F2" />
+                    <Ionicons name="add-circle-outline" size={20} color="#F2F2F2" />
                 </TouchableOpacity>
 
             </View>
